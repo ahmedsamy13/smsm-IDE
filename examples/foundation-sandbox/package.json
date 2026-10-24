@@ -1,0 +1,6 @@
+{
+  "name": "foundation-sandbox",
+  "private": true,
+  "type": "module",
+  "scripts": { "start": "node app.js" }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "personal-ide-foundation",
+  "version": "0.6.1",
+  "private": true,
+  "description": "Personal desktop IDE foundation using a pinned VSCodium runtime",
+  "type": "module",
+  "scripts": {
+    "start": "node scripts/start-ide.mjs",
+    "setup": "powershell.exe -NoProfile -File scripts/Setup-Foundation.ps1",
+    "test": "node --test tests/*.test.mjs",
+    "setup:workflow": "node scripts/setup-workflow.mjs",
+    "verify:workflow": "node scripts/verify-desktop.mjs --workflow",
+    "probe:codex": "node scripts/probe-codex.mjs",
+    "verify:codex": "node scripts/verify-codex.mjs",
+    "verify:codex-ui": "node scripts/verify-desktop.mjs --codex",
+    "setup:toolbox": "node scripts/setup-toolbox.mjs",
+    "verify:toolbox": "node scripts/verify-desktop.mjs --toolbox",
+    "build:installer": "pwsh -NoProfile -File scripts/build-installer.ps1"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "distribution": "VSCodium",
+  "version": "1.140.06880",
+  "platform": "win32-x64",
+  "asset": "VSCodium-win32-x64-1.140.06880.zip",
+  "url": "https://github.com/VSCodium/vscodium/releases/download/1.140.06880/VSCodium-win32-x64-1.140.06880.zip",
+  "sha256": "024ae1e88f431aee300e73c2ece92e42ebde80a7f3c484ff684f455ffa6a6a7f",
+  "bytes": 229054371,
+  "release": "https://github.com/VSCodium/vscodium/releases/tag/1.140.06880"
+}

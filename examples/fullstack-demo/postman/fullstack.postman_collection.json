@@ -1,0 +1,192 @@
+{
+  "info": {
+    "name": "Personal IDE fullstack",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://127.0.0.1:3001"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/api/health"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"healthy\",()=>{pm.response.to.have.status(200);pm.expect(pm.response.json().status).eq(\"ok\");});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Invalid task",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/api/tasks",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"title\":\" \"}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"reject blank titles\",()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Create task",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/api/tasks",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"title\":\"Verify frontend and backend\"}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"created with identity\",()=>{pm.response.to.have.status(201);const task=pm.response.json();pm.expect(task.done).eq(false);pm.expect(task.title).eq(\"Verify frontend and backend\");pm.collectionVariables.set(\"taskId\",task.id);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Persisted task",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/api/tasks"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"created task can be read\",()=>{pm.response.to.have.status(200);pm.expect(pm.response.json().tasks.some(t=>t.id===pm.collectionVariables.get(\"taskId\"))).eq(true);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Complete task",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/api/tasks/{{taskId}}",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"done\":true}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"task completed\",()=>{pm.response.to.have.status(200);pm.expect(pm.response.json().done).eq(true);});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Invalid completion",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/api/tasks/{{taskId}}",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"done\":\"yes\"}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"reject invalid done\",()=>pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Unknown task",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/api/tasks/not-found",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"done\":true}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"unknown task returns 404\",()=>pm.response.to.have.status(404));"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

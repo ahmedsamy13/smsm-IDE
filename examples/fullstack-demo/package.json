@@ -1,0 +1,28 @@
+{
+  "name": "personal-ide-fullstack-demo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "node scripts/build.mjs",
+    "start": "node server/index.mjs",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint server scripts",
+    "format": "prettier --write client server scripts",
+    "test": "node --test tests/*.test.mjs"
+  },
+  "dependencies": {
+    "express": "5.3.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "esbuild": "0.28.2",
+    "eslint": "10.13.0",
+    "prettier": "^3.6.2",
+    "typescript": "^5.9.3"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Node: current JavaScript file",
+      "type": "pwa-node",
+      "request": "launch",
+      "program": "${file}",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "Next: debug dev script",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "npm run dev",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "Nest: compiled server",
+      "type": "pwa-node",
+      "request": "launch",
+      "program": "${workspaceFolder}/dist/main.js",
+      "outFiles": ["${workspaceFolder}/dist/**/*.js"],
+      "sourceMaps": true,
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "React: Edge (Vite default URL)",
+      "type": "pwa-msedge",
+      "request": "launch",
+      "url": "http://localhost:5173",
+      "webRoot": "${workspaceFolder}"
+    },
+    {
+      "type": "node-terminal",
+      "request": "launch",
+      "name": "Nest: debug start:dev script",
+      "cwd": "${workspaceFolder}",
+      "command": "npm run start:dev"
+    }
+  ]
+}

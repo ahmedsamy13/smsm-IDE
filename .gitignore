@@ -1,0 +1,20 @@
+.runtime/
+.downloads/
+.local/
+.verification/
+node_modules/
+release/
+
+# Local accounts, environment settings, and editor data
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.log
+*.tsbuildinfo
+profile/
+extension-cache/
+installer-verification/
+.DS_Store
+Thumbs.db

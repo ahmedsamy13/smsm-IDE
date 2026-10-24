@@ -1,0 +1,1 @@
+export default [{files:["server/**/*.mjs","scripts/**/*.mjs"],languageOptions:{ecmaVersion:2022,sourceType:"module",globals:{process:"readonly",console:"readonly",URL:"readonly"}},rules:{"no-unused-vars":["error",{argsIgnorePattern:"^_"}],"no-undef":"error"}}];

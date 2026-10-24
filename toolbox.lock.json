@@ -1,0 +1,41 @@
+{
+  "extensions": [
+    {
+      "id": "pkief.material-icon-theme",
+      "version": "5.39.0",
+      "sha256": "f3fda4e1d6095d942c92467c1ad6f322a74c62160f7d29741058e4d726922fbd",
+      "url": "https://open-vsx.org/api/PKief/material-icon-theme/5.39.0/file/PKief.material-icon-theme-5.39.0.vsix",
+      "license": "MIT"
+    },
+    {
+      "id": "humao.rest-client",
+      "version": "0.25.0",
+      "sha256": "00cb3d6c441687b352e8747a95bf46e98c42107a7bf58a2df06c7e55ed2d8fbd",
+      "url": "https://open-vsx.org/api/humao/rest-client/0.25.0/file/humao.rest-client-0.25.0.vsix",
+      "license": "MIT"
+    },
+    {
+      "id": "personal-ide.sqlite-browser",
+      "version": "0.14.2",
+      "sha256": "ea294225d56f83260aec228ca4bd6e31bd6dca39529f848782fe4cb534a5a283",
+      "license": "Apache-2.0",
+      "localBuild": "scripts/build-sqlite-adapter.ps1",
+      "upstream": "alexcvzz.vscode-sqlite@0.14.1",
+      "upstreamSha256": "4d6371a4701fbb34e4001f9a6262361e4f13998b2ea1460ef99a3148f59ddcd5"
+    },
+    {
+      "id": "jeanp413.open-remote-ssh",
+      "version": "0.5.0",
+      "sha256": "99e72aec520a75e8a6ddb4feccf7353c1ff8e700ca885afe811ba96b6c3b48ca",
+      "url": "https://open-vsx.org/api/jeanp413/open-remote-ssh/0.5.0/file/jeanp413.open-remote-ssh-0.5.0.vsix",
+      "license": "MIT"
+    },
+    {
+      "id": "ms-azuretools.vscode-containers",
+      "version": "2.4.5",
+      "sha256": "2682ba725c8017867f8e90d7b7737946fa0bb6a897f9011db690917d7bc449f2",
+      "url": "https://open-vsx.org/api/ms-azuretools/vscode-containers/2.4.5/file/ms-azuretools.vscode-containers-2.4.5.vsix",
+      "license": "MIT"
+    }
+  ]
+}

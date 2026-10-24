@@ -1,0 +1,172 @@
+{
+  "name": "workspace-interface",
+  "publisher": "personal-ide",
+  "displayName": "Personal IDE Interface",
+  "version": "0.6.1",
+  "engines": {
+    "vscode": "^1.101.0"
+  },
+  "main": "extension.cjs",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": true
+    }
+  },
+  "contributes": {
+    "configurationDefaults": {
+      "editor.codeLensFontSize": 14
+    },
+    "commands": [
+      {
+        "command": "personalIde.home",
+        "title": "Personal IDE: Workspace Overview"
+      },
+      {
+        "command": "personalIde.applyLayout",
+        "title": "Personal IDE: Apply Simple Layout"
+      },
+      {
+        "command": "personalIde.scripts",
+        "title": "Personal IDE: Run Package Script"
+      },
+      {
+        "command": "personalIde.debug",
+        "title": "Personal IDE: Run and Debug"
+      },
+      {
+        "command": "personalIde.import",
+        "title": "Personal IDE: Import from VS Code"
+      },
+      {
+        "command": "personalIde.workflowDefaults",
+        "title": "Personal IDE: Apply Fullstack Defaults"
+      },
+      {
+        "command": "personalIde.codex",
+        "title": "Personal IDE: Codex Agent Chat"
+      },
+      {
+        "title": "Personal IDE: Toggle Codex Sidebar",
+        "icon": "media/codex.svg",
+        "command": "personalIde.toggleCodex"
+      },
+      {
+        "title": "Personal IDE: JavaScript Console",
+        "command": "personalIde.console"
+      },
+      {
+        "title": "Run JavaScript in Console",
+        "icon": "$(play)",
+        "command": "personalIde.runJavaScript"
+      },
+      {
+        "title": "Personal IDE: Docker and Containers",
+        "command": "personalIde.docker"
+      },
+      {
+        "title": "Personal IDE: Browse Database",
+        "command": "personalIde.database"
+      },
+      {
+        "title": "Personal IDE: API Requests",
+        "command": "personalIde.api"
+      },
+      {
+        "title": "Personal IDE: Remote Development",
+        "command": "personalIde.remote"
+      }
+    ],
+    "themes": [
+      {
+        "label": "Personal IDE Midnight",
+        "uiTheme": "vs-dark",
+        "path": "theme.json"
+      }
+    ],
+    "configuration": {
+      "properties": {
+        "personalIde.codexExecutable": {
+          "default": "",
+          "description": "Optional absolute path to the official Codex executable.",
+          "type": "string"
+        }
+      },
+      "title": "Personal IDE"
+    },
+    "viewsContainers": {
+      "secondarySidebar": [
+        {
+          "title": "Codex",
+          "icon": "media/codex.svg",
+          "id": "personal-ide-agent"
+        }
+      ],
+      "panel": [
+        {
+          "title": "Console",
+          "icon": "media/console.svg",
+          "id": "personal-ide-console"
+        }
+      ]
+    },
+    "views": {
+      "explorer": [
+        {
+          "visibility": "collapsed",
+          "id": "personalIde.toolbox",
+          "name": "Development Tools"
+        }
+      ],
+      "personal-ide-console": [
+        {
+          "type": "webview",
+          "icon": "media/console.svg",
+          "id": "personalIde.consoleView",
+          "name": "JavaScript Console"
+        }
+      ],
+      "personal-ide-agent": [
+        {
+          "type": "webview",
+          "icon": "media/codex.svg",
+          "id": "personalIde.codexView",
+          "name": "Codex"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "key": "ctrl+alt+i",
+        "command": "personalIde.toggleCodex"
+      },
+      {
+        "when": "editorTextFocus && (resourceExtname == .js || resourceExtname == .mjs || resourceExtname == .cjs)",
+        "key": "ctrl+alt+n",
+        "command": "personalIde.runJavaScript"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "when": "resourceExtname == .js || resourceExtname == .mjs || resourceExtname == .cjs",
+          "group": "navigation",
+          "command": "personalIde.runJavaScript"
+        },
+        {
+          "command": "personalIde.toggleCodex",
+          "group": "navigation@0"
+        }
+      ],
+      "view/title": [
+        {
+          "when": "view == personalIde.codexView",
+          "group": "navigation",
+          "command": "personalIde.toggleCodex"
+        }
+      ]
+    }
+  }
+}
