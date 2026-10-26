@@ -19,7 +19,7 @@ var __copyProps = (to, from, except, desc) => {
 };
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
-// ../../personal-ide-build-cache/interface/node_modules/jsonc-parser/lib/esm/impl/scanner.js
+// node_modules/jsonc-parser/lib/esm/impl/scanner.js
 function createScanner(text, ignoreTrivia = false) {
   const len = text.length;
   let pos = 0, value = "", tokenOffset = 0, token = 16, lineNumber = 0, lineStartOffset = 0, tokenLineStartOffset = 0, prevTokenLineStartOffset = 0, scanError = 0;
@@ -358,7 +358,7 @@ function isDigit(ch) {
 }
 var CharacterCodes;
 var init_scanner = __esm({
-  "../../personal-ide-build-cache/interface/node_modules/jsonc-parser/lib/esm/impl/scanner.js"() {
+  "node_modules/jsonc-parser/lib/esm/impl/scanner.js"() {
     "use strict";
     (function(CharacterCodes2) {
       CharacterCodes2[CharacterCodes2["lineFeed"] = 10] = "lineFeed";
@@ -445,10 +445,10 @@ var init_scanner = __esm({
   }
 });
 
-// ../../personal-ide-build-cache/interface/node_modules/jsonc-parser/lib/esm/impl/string-intern.js
+// node_modules/jsonc-parser/lib/esm/impl/string-intern.js
 var cachedSpaces, maxCachedValues, cachedBreakLinesWithSpaces, supportedEols;
 var init_string_intern = __esm({
-  "../../personal-ide-build-cache/interface/node_modules/jsonc-parser/lib/esm/impl/string-intern.js"() {
+  "node_modules/jsonc-parser/lib/esm/impl/string-intern.js"() {
     cachedSpaces = new Array(20).fill(0).map((_, index) => {
       return " ".repeat(index);
     });
@@ -481,7 +481,7 @@ var init_string_intern = __esm({
   }
 });
 
-// ../../personal-ide-build-cache/interface/node_modules/jsonc-parser/lib/esm/impl/format.js
+// node_modules/jsonc-parser/lib/esm/impl/format.js
 function format(documentText, range, options) {
   let initialIndentLevel;
   let formatText;
@@ -717,14 +717,14 @@ function isEOL(text, offset) {
   return "\r\n".indexOf(text.charAt(offset)) !== -1;
 }
 var init_format = __esm({
-  "../../personal-ide-build-cache/interface/node_modules/jsonc-parser/lib/esm/impl/format.js"() {
+  "node_modules/jsonc-parser/lib/esm/impl/format.js"() {
     "use strict";
     init_scanner();
     init_string_intern();
   }
 });
 
-// ../../personal-ide-build-cache/interface/node_modules/jsonc-parser/lib/esm/impl/parser.js
+// node_modules/jsonc-parser/lib/esm/impl/parser.js
 function getLocation(text, position) {
   const segments = [];
   const earlyReturnException = new Object();
@@ -1373,7 +1373,7 @@ function getNodeType(value) {
 }
 var ParseOptions;
 var init_parser = __esm({
-  "../../personal-ide-build-cache/interface/node_modules/jsonc-parser/lib/esm/impl/parser.js"() {
+  "node_modules/jsonc-parser/lib/esm/impl/parser.js"() {
     "use strict";
     init_scanner();
     (function(ParseOptions2) {
@@ -1384,7 +1384,7 @@ var init_parser = __esm({
   }
 });
 
-// ../../personal-ide-build-cache/interface/node_modules/jsonc-parser/lib/esm/impl/edit.js
+// node_modules/jsonc-parser/lib/esm/impl/edit.js
 function setProperty(text, originalPath, value, options) {
   const path = originalPath.slice();
   const errors = [];
@@ -1528,14 +1528,14 @@ function applyEdit(text, edit) {
   return text.substring(0, edit.offset) + edit.content + text.substring(edit.offset + edit.length);
 }
 var init_edit = __esm({
-  "../../personal-ide-build-cache/interface/node_modules/jsonc-parser/lib/esm/impl/edit.js"() {
+  "node_modules/jsonc-parser/lib/esm/impl/edit.js"() {
     "use strict";
     init_format();
     init_parser();
   }
 });
 
-// ../../personal-ide-build-cache/interface/node_modules/jsonc-parser/lib/esm/main.js
+// node_modules/jsonc-parser/lib/esm/main.js
 var main_exports = {};
 __export(main_exports, {
   ParseErrorCode: () => ParseErrorCode,
@@ -1621,7 +1621,7 @@ function applyEdits(text, edits) {
 }
 var createScanner2, ScanError, SyntaxKind, getLocation2, parse2, parseTree2, findNodeAtLocation2, findNodeAtOffset2, getNodePath2, getNodeValue2, visit2, stripComments2, ParseErrorCode;
 var init_main = __esm({
-  "../../personal-ide-build-cache/interface/node_modules/jsonc-parser/lib/esm/main.js"() {
+  "node_modules/jsonc-parser/lib/esm/main.js"() {
     "use strict";
     init_format();
     init_edit();

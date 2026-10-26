@@ -13,6 +13,7 @@ const review = require("./codex-review.cjs");
 const proposals = require("./codex-proposals.cjs");
 const {normalizeUsage,managedLoginUrl}=require("./codex-usage.cjs");
 const {registerInlineReview}=require("./codex-inline-review.cjs");
+const {createHistory}=require("./codex-history.cjs");
 function registerCodex(context) {
   let lastEditor = vscode.window.activeTextEditor;
   let panelReady = false;
@@ -30,7 +31,14 @@ function registerCodex(context) {
     items = new Map(),
     virtual = new Map();
   const inlineReview=registerInlineReview(context);
-  const saved = context.workspaceState.get("personalIde.codexChat") || {};
+  const history=createHistory(context.globalStorageUri.fsPath);
+  const workspaceRoot=vscode.workspace.workspaceFolders?.[0]?.uri.fsPath;
+  const currentRoot=workspaceRoot?fs.realpathSync(workspaceRoot):"";
+  const selection=context.globalState.get("personalIde.chatSelection");
+  const selected=selection?.root===currentRoot?history.load(selection.id):null;
+  const saved = selected || context.workspaceState.get("personalIde.codexChat") || {};
+  let chatId=saved.id||saved.chatId||crypto.randomUUID();
+
   const state = {
     trusted: vscode.workspace.isTrusted===true,
     loginPending: false,
@@ -47,7 +55,9 @@ function registerCodex(context) {
     commandApprovals: saved.commandApprovals === true,
     network: false,
     sandbox: "unknown",
-    root: "",
+    root: saved.root||currentRoot,
+    chatId,
+    history: history.list(),
     messages: saved.messages || [],
     events: [],
     pending: [],
@@ -59,22 +69,29 @@ function registerCodex(context) {
   };
   let savedThread = saved.toolVersion === 1 ? saved.threadId || null : null,
     savedRoot = saved.root || null;
-  function persist() {
-    return context.workspaceState.update("personalIde.codexChat", {
+  root=state.root||undefined;
+  if(saved.messages?.length||saved.threadId){history.save({...saved,id:chatId,root:state.root});state.history=history.list();}
+  async function persist() {
+    const chat={
+      id:chatId,
+      chatId,
       root: state.root,
       threadId: threadId || savedThread,
       toolVersion: 1,
       model: state.model,
       commandApprovals: state.commandApprovals,
       messages: state.messages.slice(-60),
-    });
+    };
+    history.save(chat);state.history=history.list();
+    await context.workspaceState.update("personalIde.codexChat",chat);
   }
+  if(selected||((saved.messages?.length||saved.threadId)&&!saved.id&&!saved.chatId))persist().then(()=>selected?context.globalState.update("personalIde.chatSelection",undefined):undefined).catch(error=>{state.error=error.message;publish();});
   function activeState(){return {...state,provider:"codex"};}
   function publish() {
     if (timer) return;
     timer = setTimeout(() => {
       timer = null;
-      state.pending = [...pending.values()].map((x) => x.public).concat(inlineReview.list());
+      state.pending = [...pending.values()].map((x) => x.public).concat(root?inlineReview.list(root):[]);
       panel?.webview.postMessage({ type: "codexState", state:activeState() });
     }, 60);
   }
@@ -667,15 +684,16 @@ function registerCodex(context) {
       }
       if (action.type === "newChat") {
         assertIdle();
-        threadId = null;
-        savedThread = null;
-        state.messages = [];
-        state.review = [];
-        entries = [];
-        state.turnDiff = "";
-        state.mode = "ask";
-        state.network = false;
-        await persist();
+        const folders=await vscode.window.showOpenDialog({title:"Choose project folder for new chat",openLabel:"Use this project",canSelectFiles:false,canSelectFolders:true,canSelectMany:false,defaultUri:root?vscode.Uri.file(root):undefined});
+        if(!folders?.length)return;
+        const project=fs.realpathSync(folders[0].fsPath);
+        if(!fs.statSync(project).isDirectory())throw Error("Choose a project folder.");
+        await switchChat({id:crypto.randomUUID(),root:project,messages:[],toolVersion:1,model:state.model,commandApprovals:state.commandApprovals});
+      }
+      if(action.type==="history"){state.history=history.list();publish();return;}
+      if(action.type==="openChat"){
+        assertIdle();const chat=history.load(action.id);if(!chat)throw Error("This chat could not be found.");
+        await switchChat(chat);
       }
       if (action.type === "settings") {
         assertIdle();
@@ -689,6 +707,7 @@ function registerCodex(context) {
           );
           if (allow !== "Allow full access") return;
         }
+        await persist();chatId=crypto.randomUUID();state.chatId=chatId;
         state.commandApprovals = action.commandApprovals === undefined ? state.commandApprovals : !!action.commandApprovals;
         state.mode = action.mode;
         state.network = action.mode === "full" || !!action.network;
@@ -750,7 +769,7 @@ function registerCodex(context) {
         state.attachments = state.attachments.filter((a) => a.id !== action.id);
       if (action.type === "reviewAll") {
         if(!["accept","decline"].includes(action.decision))throw Error("Invalid review decision");
-        const ids=inlineReview.list().map(request=>request.id);
+        const ids=(root?inlineReview.list(root):[]).map(request=>request.id);
         for(const id of ids)if(inlineReview.inspect(id))await inlineReview.decide(id,action.decision);
         publish();return;
       }
@@ -797,6 +816,26 @@ function registerCodex(context) {
         });
       publish();
     }
+  }
+  async function switchChat(chat){
+    const project=fs.realpathSync(chat.root);
+    if(!fs.statSync(project).isDirectory())throw Error("This project's folder is no longer available.");
+    if(chat.id===chatId&&project===root)return;
+    await persist();
+    if(project!==currentRoot){
+      history.save({...chat,root:project});
+      await context.globalState.update("personalIde.chatSelection",{id:chat.id,root:project});
+      try{await vscode.commands.executeCommand("vscode.openFolder",vscode.Uri.file(project),{forceReuseWindow:true});}
+      catch(error){await context.globalState.update("personalIde.chatSelection",undefined);throw error;}
+      return;
+    }
+    denyRequests();threadId=null;turnId=null;
+    savedThread=chat.toolVersion===1?chat.threadId||null:null;savedRoot=project;root=project;
+    chatId=chat.id;state.chatId=chatId;state.root=project;state.messages=chat.messages||[];
+    state.model=chat.model||state.model;state.commandApprovals=chat.commandApprovals===true;
+    state.mode="ask";state.network=false;state.attachments=[];state.review=[];entries=[];items.clear();
+    state.turnDiff="";state.events=[];state.error="";state.status=state.connected?"Connected":"Disconnected";
+    await persist();publish();
   }
   function resolveView(view) {
     panel = view; panelReady = false;

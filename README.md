@@ -7,8 +7,11 @@ Double-click **Start Personal IDE.cmd**, or install release/PersonalIDE-0.6.1-x6
 
 Drag a project folder onto the CMD launcher to open it. Your settings and extensions live in %LOCALAPPDATA%/PersonalIDE.
 
+The Personal IDE interface is bundled into the editor itself, so it loads when opening the app directly or from a desktop shortcut. Codex opens on the right the first time each profile loads the interface; **Ctrl+Alt+I** toggles it afterward.
+
 ## Everyday controls
 - **Ctrl+Alt+I**: show/hide Codex on the right. Connect Codex uses the official CLI's ChatGPT sign-in.
+- **Chat history** (clock icon in Codex): search and reopen saved conversations with their projects. **New Chat (+)** always asks you to choose a project folder from your PC; canceling keeps the current chat. History is stored locally and survives restarts.
 - **Ctrl+Alt+N**: run the saved JavaScript file in the bottom Console.
 - Left Explorer: files with Material icons and Development Tools.
 - Development Tools: containers, SQLite browser, API requests, and optional SSH.

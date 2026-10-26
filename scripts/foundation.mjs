@@ -44,7 +44,7 @@ export function cleanEnvironment(source = process.env) {
 
 export function prepareProfile(localRoot = applicationDataRoot) {
   const userData = path.join(localRoot, 'profile');
-  const extensions = path.join(localRoot, 'extensions');
+  const extensions = process.env.PERSONAL_IDE_EXTENSIONS_ROOT ? path.resolve(process.env.PERSONAL_IDE_EXTENSIONS_ROOT) : path.join(localRoot, 'extensions');
   fs.mkdirSync(path.join(userData, 'User'), { recursive: true });
   fs.mkdirSync(extensions, { recursive: true });
   const settings = {

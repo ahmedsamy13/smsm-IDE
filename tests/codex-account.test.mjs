@@ -36,9 +36,9 @@ test("IDE browser sign-in works before trusting a project; quota failure never g
  }
  const rpcModule=localRequire("./codex-rpc.cjs");
  const vscode={window:{activeTextEditor:null,registerWebviewViewProvider:disposable,onDidChangeActiveTextEditor:disposable},workspace:{isTrusted:false,workspaceFolders:[],getConfiguration:()=>({get:()=>""}),registerTextDocumentContentProvider:disposable,onDidChangeTextDocument:disposable,onDidGrantWorkspaceTrust:disposable},commands:{registerCommand:disposable},Uri:{parse:url=>url},env:{openExternal:async uri=>{opened.push(uri);return true;}}};
- const box={module:{exports:{}},require:name=>name==="vscode"?vscode:name==="./codex-inline-review.cjs"?{registerInlineReview:()=>({clear(){},remove(){}})}:name==="./codex-rpc.cjs"?{...rpcModule,CodexRpc:Rpc,resolveCodex:()=>path.join(os.tmpdir(),"codex.exe")}:localRequire(name),setTimeout,clearTimeout,Buffer,URL};
+ const box={module:{exports:{}},require:name=>name==="vscode"?vscode:name==="./codex-inline-review.cjs"?{registerInlineReview:()=>({clear(){},remove(){},list(){return [];}})}:name==="./codex-rpc.cjs"?{...rpcModule,CodexRpc:Rpc,resolveCodex:()=>path.join(os.tmpdir(),"codex.exe")}:localRequire(name),setTimeout,clearTimeout,Buffer,URL};
  vm.runInNewContext(fs.readFileSync(hostFile,"utf8"),box);
- const api=box.module.exports.registerCodex({globalStorageUri:{fsPath:fs.mkdtempSync(path.join(os.tmpdir(),"ide-auth-"))},subscriptions,workspaceState:{get:()=>null,update:async()=>{}}});
+ const api=box.module.exports.registerCodex({globalStorageUri:{fsPath:fs.mkdtempSync(path.join(os.tmpdir(),"ide-auth-"))},subscriptions,globalState:{get:()=>undefined,update:async()=>{}},workspaceState:{get:()=>null,update:async()=>{}}});
  try{
   await api.handle({type:"login"});assert.equal(opened.length,1);assert.equal(api.getState().loginPending,true);assert.equal(api.getState().root,"");
   await api.handle({type:"login"});assert.equal(client.starts,1);

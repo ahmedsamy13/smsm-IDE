@@ -10,3 +10,18 @@ console.log("[app] Workspace initialization complete.");
 console.log("hello smsm");
 const x = 5;
 console.log("[app] Current value of x:", x);
+console.log("nigga");
+console.log('sa')
+
+console.log("nigga");
+console.log("nigga");
+console.log("nigga");
+console.log("nigga");
+console.log("nigga");
+console.log("nigga");
+console.log("nigga");
+console.log("nigga");
+console.log("nigga");
+console.log("nigga");
+console.log("nigga");
+console.log("nigga");

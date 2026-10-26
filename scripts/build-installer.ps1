@@ -13,6 +13,8 @@ function CopyTree([string]$source,[string]$destination,[string[]]$exclude=@()){
 }
 CopyTree (Join-Path $project '.runtime') (Join-Path $stage '.runtime') @('node-compile-cache')
 CopyTree (Join-Path $project 'interface\extension') (Join-Path $stage 'interface\extension')
+$foundation=Get-Content -LiteralPath (Join-Path $project 'foundation.lock.json') -Raw|ConvertFrom-Json
+CopyTree (Join-Path $project 'interface\extension') (Join-Path $stage ('.runtime\vscodium-'+$foundation.version+'\resources\app\extensions\personal-ide-interface'))
 CopyTree (Join-Path $project 'examples\foundation-sandbox') (Join-Path $stage 'examples\foundation-sandbox') @('node_modules','.git','.data')
 CopyTree (Join-Path $project 'examples\fullstack-demo') (Join-Path $stage 'examples\fullstack-demo') @('node_modules','.git','.data')
 [IO.Directory]::CreateDirectory((Join-Path $stage 'scripts'))|Out-Null

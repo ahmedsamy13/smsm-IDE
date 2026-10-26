@@ -16,6 +16,8 @@ const initial = {
   network: false,
   sandbox: "unknown",
   root: "",
+  chatId: "",
+  history: [],
   messages: [],
   events: [],
   pending: [],
@@ -140,6 +142,8 @@ function Approval({ item }) {
 
 function App() {
  const [state,setState]=useState(initial),[prompt,setPrompt]=useState(()=>host.getState()?.draft||""),[submitting,setSubmitting]=useState(false),[copied,setCopied]=useState(""),[atBottom,setAtBottom]=useState(true);
+ const [historyOpen,setHistoryOpen]=useState(false),[historySearch,setHistorySearch]=useState("");
+ const activeChat=useRef(host.getState()?.chatId||null);
  const pendingSend=useRef(null),sequence=useRef(0),conversation=useRef(null),follow=useRef(true),input=useRef(null),copyTimer=useRef(null);
  useEffect(()=>{
   const receive=e=>{
@@ -155,7 +159,8 @@ function App() {
  },[]);
  useEffect(()=>{if(follow.current&&conversation.current)conversation.current.scrollTop=conversation.current.scrollHeight;},[state.messages.at(-1)?.text,state.pending.length]);
  useEffect(()=>{follow.current=true;setAtBottom(true);},[state.provider]);
- useEffect(()=>{host.setState({draft:prompt,provider:state.provider||"codex"});if(input.current){input.current.style.height="auto";input.current.style.height=Math.min(160,Math.max(72,input.current.scrollHeight))+"px";}},[prompt,state.provider]);
+ useEffect(()=>{if(!state.chatId)return;if(activeChat.current&&activeChat.current!==state.chatId){setPrompt("");setHistoryOpen(false);follow.current=true;setAtBottom(true);}activeChat.current=state.chatId;},[state.chatId]);
+ useEffect(()=>{host.setState({draft:prompt,provider:state.provider||"codex",chatId:state.chatId});if(input.current){input.current.style.height="auto";input.current.style.height=Math.min(160,Math.max(72,input.current.scrollHeight))+"px";}},[prompt,state.provider,state.chatId]);
  const model=state.models.find(m=>m.id===state.model),primary=composerAction(state,prompt,submitting);
  const submit=()=>{
   if(primary.type!=="send"||primary.disabled||pendingSend.current)return;
@@ -183,10 +188,22 @@ function App() {
        <p className="mt-2 text-muted">Uses your official Codex CLI subscription sign-in.</p>
       </div>
      </details>
-     <button title="New conversation" aria-label="New conversation" disabled={state.busy} onClick={()=>post("newChat")} className="codex-icon-button"><Icon name="new"/></button>
+     <button title="Chat history" aria-label="Chat history" aria-pressed={historyOpen} disabled={state.busy} onClick={()=>{setHistoryOpen(!historyOpen);post("history");}} className="codex-icon-button"><Icon name="history"/></button>
+     <button title="New chat — choose project folder" aria-label="New chat — choose project folder" disabled={state.busy} onClick={()=>post("newChat")} className="codex-icon-button"><Icon name="new"/></button>
      <button title="Close Codex sidebar" aria-label="Close Codex sidebar" onClick={()=>post("toggle")} className="codex-icon-button"><Icon name="close"/></button>
     </div>
    </header>
+   {historyOpen&&<section className="codex-history" aria-label="Saved chats" onKeyDown={e=>{if(e.key==="Escape")setHistoryOpen(false);}}>
+    <div className="codex-history-heading"><h2>Chat history</h2><button className="codex-icon-button" title="Back to chat" aria-label="Back to chat" onClick={()=>setHistoryOpen(false)}><Icon name="close"/></button></div>
+    <input autoFocus type="search" aria-label="Search chats" placeholder="Search chats or projects…" value={historySearch} onChange={e=>setHistorySearch(e.target.value)}/>
+    <p className="codex-history-note">Saved on this PC. Reopening a chat also opens its project.</p>
+    {state.error&&<p role="alert" className="codex-error">{state.error}</p>}
+    <div className="codex-history-list">{(state.history||[]).filter(chat=>(chat.title+" "+chat.root).toLowerCase().includes(historySearch.toLowerCase())).map(chat=><button key={chat.id} className={"codex-history-item "+(chat.id===state.chatId?"active":"")} disabled={state.busy} onClick={()=>{post("openChat",{id:chat.id});if(chat.id===state.chatId)setHistoryOpen(false);}} title={chat.root}>
+     <span className="codex-history-title"><Icon name="history"/><strong>{chat.title}</strong>{chat.id===state.chatId&&<small>Current</small>}</span>
+     <span className="codex-history-project">{chat.root||"No project selected"}</span><time dateTime={new Date(chat.updatedAt).toISOString()}>{new Date(chat.updatedAt).toLocaleString(undefined,{dateStyle:"medium",timeStyle:"short"})}</time>
+    </button>)}{!(state.history||[]).some(chat=>(chat.title+" "+chat.root).toLowerCase().includes(historySearch.toLowerCase()))&&<p className="codex-history-empty">{historySearch?"No matching chats.":"Your conversations will appear here."}</p>}</div>
+   </section>}
+   <div className="codex-chat-body" hidden={historyOpen}>
    <div className="codex-context"><span className="truncate">{state.messages.find(m=>m.role==="user")?.text.split("\n")[0].slice(0,70)||"New conversation"}</span><span className="codex-context-workspace" title={state.root}>{state.root?state.root.split(/[\\/]/).filter(Boolean).at(-1):"Your workspace"}</span></div>
    <section ref={conversation} onScroll={()=>{const el=conversation.current;follow.current=el.scrollHeight-el.scrollTop-el.clientHeight<70;setAtBottom(follow.current);}} aria-label="Conversation" className="codex-conversation">
     {!state.messages.length&&<div className="codex-empty"><span className="codex-empty-mark"><Icon name="codex"/></span><h2 className="mt-4 text-lg font-semibold">What are we building?</h2><p className="mt-2 text-sm leading-6 text-muted">Ask about your project or describe a change. Review proposed edits directly in the editor.</p><div className="codex-starters">{["Explain this project","Find and fix a bug","Review my code"].map(text=><button key={text} onClick={()=>{setPrompt(text);input.current?.focus();}}><Icon name="spark"/>{text}<Icon name="arrow"/></button>)}</div><p className="mt-4 text-xs text-muted">Attached context is sent to OpenAI when you send a message.</p></div>}
@@ -229,6 +246,7 @@ function App() {
     <Usage state={state}/>
     <p id="composer-status" className="codex-composer-hint">{primary.hint}</p>
    </footer>
+   </div>
   </main>
  );
 }
@@ -251,6 +269,7 @@ function Message({text,id,copy,copied}){
  })}</div>;
 }
 function Icon({name}){
+ if(name==="history")return <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.65" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3 11a9 9 0 1 1 2.5 7M3 4v7h7m2-4v5l3 2"/></svg>;
  const paths={usage:"M4 20V10m8 10V4m8 16v-7",codex:"M12 3 21 8v8l-9 5-9-5V8l9-5Zm0 0v6m9-1-5 3M3 8l5 3m4 10v-6m9 1-5-3M3 16l5-3",more:"M5 12h.01M12 12h.01M19 12h.01",new:"M12 5v14M5 12h14",close:"m6 6 12 12M6 18 18 6",arrow:"M12 19V5m-6 6 6-6 6 6",down:"M12 5v14m-6-6 6 6 6-6",copy:"M9 9h11v11H9zM15 9V4H4v11h5",check:"m5 12 4 4L19 6",file:"M14 3H5v18h14V8l-5-5Zm0 0v5h5M8 13h8M8 17h6",attach:"m8 12 6-6a3 3 0 0 1 4 4L10 18a5 5 0 0 1-7-7l9-9",spark:"m12 3 2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5L12 3Z",settings:"M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm0-5v3m0 12v3M3 12h3m12 0h3M5.6 5.6l2.1 2.1m8.6 8.6 2.1 2.1M5.6 18.4l2.1-2.1m8.6-8.6 2.1-2.1"};
  return <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.65" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={paths[name]||paths.codex}/></svg>;
 }

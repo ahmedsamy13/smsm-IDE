@@ -33,5 +33,6 @@ exports.activate=async context=>{
  if(context.globalState.get('layoutVersion')!==3){await layout();await context.globalState.update('layoutVersion',3);await vscode.commands.executeCommand('workbench.view.explorer');}
  const item=vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left,100);item.text='$(code) Personal IDE';item.tooltip='Open workspace overview';item.command='personalIde.home';item.show();context.subscriptions.push(item);
  if(!context.globalState.get('interfaceInitialized')){await layout();await context.globalState.update('interfaceInitialized',true);show();}
+ if(!context.globalState.get('codexSidebarIntroduced')){await codex.show();await context.globalState.update('codexSidebarIntroduced',true);}
  return {isPanelReady:()=>panelReady,workflow,codex,jsConsole,toolbox};
 };

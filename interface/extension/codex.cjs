@@ -394,9 +394,9 @@ var require_codex_review = __commonJS({
   }
 });
 
-// ../../personal-ide-build-cache/interface/node_modules/diff/libcjs/diff/base.js
+// node_modules/diff/libcjs/diff/base.js
 var require_base = __commonJS({
-  "../../personal-ide-build-cache/interface/node_modules/diff/libcjs/diff/base.js"(exports2) {
+  "node_modules/diff/libcjs/diff/base.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     var Diff = class {
@@ -603,9 +603,9 @@ var require_base = __commonJS({
   }
 });
 
-// ../../personal-ide-build-cache/interface/node_modules/diff/libcjs/diff/character.js
+// node_modules/diff/libcjs/diff/character.js
 var require_character = __commonJS({
-  "../../personal-ide-build-cache/interface/node_modules/diff/libcjs/diff/character.js"(exports2) {
+  "node_modules/diff/libcjs/diff/character.js"(exports2) {
     "use strict";
     var __importDefault = exports2 && exports2.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
@@ -623,9 +623,9 @@ var require_character = __commonJS({
   }
 });
 
-// ../../personal-ide-build-cache/interface/node_modules/diff/libcjs/util/string.js
+// node_modules/diff/libcjs/util/string.js
 var require_string = __commonJS({
-  "../../personal-ide-build-cache/interface/node_modules/diff/libcjs/util/string.js"(exports2) {
+  "node_modules/diff/libcjs/util/string.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.longestCommonPrefix = longestCommonPrefix;
@@ -776,9 +776,9 @@ var require_string = __commonJS({
   }
 });
 
-// ../../personal-ide-build-cache/interface/node_modules/diff/libcjs/diff/word.js
+// node_modules/diff/libcjs/diff/word.js
 var require_word = __commonJS({
-  "../../personal-ide-build-cache/interface/node_modules/diff/libcjs/diff/word.js"(exports2) {
+  "node_modules/diff/libcjs/diff/word.js"(exports2) {
     "use strict";
     var __importDefault = exports2 && exports2.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
@@ -933,9 +933,9 @@ var require_word = __commonJS({
   }
 });
 
-// ../../personal-ide-build-cache/interface/node_modules/diff/libcjs/util/params.js
+// node_modules/diff/libcjs/util/params.js
 var require_params = __commonJS({
-  "../../personal-ide-build-cache/interface/node_modules/diff/libcjs/util/params.js"(exports2) {
+  "node_modules/diff/libcjs/util/params.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.generateOptions = generateOptions;
@@ -954,9 +954,9 @@ var require_params = __commonJS({
   }
 });
 
-// ../../personal-ide-build-cache/interface/node_modules/diff/libcjs/diff/line.js
+// node_modules/diff/libcjs/diff/line.js
 var require_line = __commonJS({
-  "../../personal-ide-build-cache/interface/node_modules/diff/libcjs/diff/line.js"(exports2) {
+  "node_modules/diff/libcjs/diff/line.js"(exports2) {
     "use strict";
     var __importDefault = exports2 && exports2.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
@@ -1021,9 +1021,9 @@ var require_line = __commonJS({
   }
 });
 
-// ../../personal-ide-build-cache/interface/node_modules/diff/libcjs/diff/sentence.js
+// node_modules/diff/libcjs/diff/sentence.js
 var require_sentence = __commonJS({
-  "../../personal-ide-build-cache/interface/node_modules/diff/libcjs/diff/sentence.js"(exports2) {
+  "node_modules/diff/libcjs/diff/sentence.js"(exports2) {
     "use strict";
     var __importDefault = exports2 && exports2.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
@@ -1065,9 +1065,9 @@ var require_sentence = __commonJS({
   }
 });
 
-// ../../personal-ide-build-cache/interface/node_modules/diff/libcjs/diff/css.js
+// node_modules/diff/libcjs/diff/css.js
 var require_css = __commonJS({
-  "../../personal-ide-build-cache/interface/node_modules/diff/libcjs/diff/css.js"(exports2) {
+  "node_modules/diff/libcjs/diff/css.js"(exports2) {
     "use strict";
     var __importDefault = exports2 && exports2.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
@@ -1088,9 +1088,9 @@ var require_css = __commonJS({
   }
 });
 
-// ../../personal-ide-build-cache/interface/node_modules/diff/libcjs/diff/json.js
+// node_modules/diff/libcjs/diff/json.js
 var require_json = __commonJS({
-  "../../personal-ide-build-cache/interface/node_modules/diff/libcjs/diff/json.js"(exports2) {
+  "node_modules/diff/libcjs/diff/json.js"(exports2) {
     "use strict";
     var __importDefault = exports2 && exports2.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
@@ -1174,9 +1174,9 @@ var require_json = __commonJS({
   }
 });
 
-// ../../personal-ide-build-cache/interface/node_modules/diff/libcjs/diff/array.js
+// node_modules/diff/libcjs/diff/array.js
 var require_array = __commonJS({
-  "../../personal-ide-build-cache/interface/node_modules/diff/libcjs/diff/array.js"(exports2) {
+  "node_modules/diff/libcjs/diff/array.js"(exports2) {
     "use strict";
     var __importDefault = exports2 && exports2.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
@@ -1203,9 +1203,9 @@ var require_array = __commonJS({
   }
 });
 
-// ../../personal-ide-build-cache/interface/node_modules/diff/libcjs/patch/line-endings.js
+// node_modules/diff/libcjs/patch/line-endings.js
 var require_line_endings = __commonJS({
-  "../../personal-ide-build-cache/interface/node_modules/diff/libcjs/patch/line-endings.js"(exports2) {
+  "node_modules/diff/libcjs/patch/line-endings.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.unixToWin = unixToWin;
@@ -1245,9 +1245,9 @@ var require_line_endings = __commonJS({
   }
 });
 
-// ../../personal-ide-build-cache/interface/node_modules/diff/libcjs/patch/parse.js
+// node_modules/diff/libcjs/patch/parse.js
 var require_parse = __commonJS({
-  "../../personal-ide-build-cache/interface/node_modules/diff/libcjs/patch/parse.js"(exports2) {
+  "node_modules/diff/libcjs/patch/parse.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.parsePatch = parsePatch;
@@ -1588,9 +1588,9 @@ var require_parse = __commonJS({
   }
 });
 
-// ../../personal-ide-build-cache/interface/node_modules/diff/libcjs/util/distance-iterator.js
+// node_modules/diff/libcjs/util/distance-iterator.js
 var require_distance_iterator = __commonJS({
-  "../../personal-ide-build-cache/interface/node_modules/diff/libcjs/util/distance-iterator.js"(exports2) {
+  "node_modules/diff/libcjs/util/distance-iterator.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.default = default_1;
@@ -1624,9 +1624,9 @@ var require_distance_iterator = __commonJS({
   }
 });
 
-// ../../personal-ide-build-cache/interface/node_modules/diff/libcjs/patch/apply.js
+// node_modules/diff/libcjs/patch/apply.js
 var require_apply = __commonJS({
-  "../../personal-ide-build-cache/interface/node_modules/diff/libcjs/patch/apply.js"(exports2) {
+  "node_modules/diff/libcjs/patch/apply.js"(exports2) {
     "use strict";
     var __importDefault = exports2 && exports2.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
@@ -1811,9 +1811,9 @@ var require_apply = __commonJS({
   }
 });
 
-// ../../personal-ide-build-cache/interface/node_modules/diff/libcjs/patch/reverse.js
+// node_modules/diff/libcjs/patch/reverse.js
 var require_reverse = __commonJS({
-  "../../personal-ide-build-cache/interface/node_modules/diff/libcjs/patch/reverse.js"(exports2) {
+  "node_modules/diff/libcjs/patch/reverse.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.reversePatch = reversePatch;
@@ -1864,9 +1864,9 @@ var require_reverse = __commonJS({
   }
 });
 
-// ../../personal-ide-build-cache/interface/node_modules/diff/libcjs/patch/create.js
+// node_modules/diff/libcjs/patch/create.js
 var require_create = __commonJS({
-  "../../personal-ide-build-cache/interface/node_modules/diff/libcjs/patch/create.js"(exports2) {
+  "node_modules/diff/libcjs/patch/create.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.OMIT_HEADERS = exports2.FILE_HEADERS_ONLY = exports2.INCLUDE_HEADERS = void 0;
@@ -2148,9 +2148,9 @@ var require_create = __commonJS({
   }
 });
 
-// ../../personal-ide-build-cache/interface/node_modules/diff/libcjs/convert/dmp.js
+// node_modules/diff/libcjs/convert/dmp.js
 var require_dmp = __commonJS({
-  "../../personal-ide-build-cache/interface/node_modules/diff/libcjs/convert/dmp.js"(exports2) {
+  "node_modules/diff/libcjs/convert/dmp.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.convertChangesToDMP = convertChangesToDMP;
@@ -2173,9 +2173,9 @@ var require_dmp = __commonJS({
   }
 });
 
-// ../../personal-ide-build-cache/interface/node_modules/diff/libcjs/convert/xml.js
+// node_modules/diff/libcjs/convert/xml.js
 var require_xml = __commonJS({
-  "../../personal-ide-build-cache/interface/node_modules/diff/libcjs/convert/xml.js"(exports2) {
+  "node_modules/diff/libcjs/convert/xml.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.convertChangesToXML = convertChangesToXML;
@@ -2208,9 +2208,9 @@ var require_xml = __commonJS({
   }
 });
 
-// ../../personal-ide-build-cache/interface/node_modules/diff/libcjs/index.js
+// node_modules/diff/libcjs/index.js
 var require_libcjs = __commonJS({
-  "../../personal-ide-build-cache/interface/node_modules/diff/libcjs/index.js"(exports2) {
+  "node_modules/diff/libcjs/index.js"(exports2) {
     "use strict";
     var __importDefault = exports2 && exports2.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
@@ -2572,8 +2572,8 @@ var require_codex_inline_review = __commonJS({
       const uri = (entry, side) => vscode2.Uri.from({ scheme, authority: side, path: "/" + entry.id + "/" + entry.review.label.replaceAll("\\", "/") });
       const lookup = (document) => [...entries.values()].find((entry) => document.uri.scheme === scheme ? document.uri.path.startsWith("/" + entry.id + "/") : document.uri.scheme === "file" && document.uri.fsPath.toLowerCase() === entry.review.file.toLowerCase());
       const content = (entry) => ({ ...entry.review, hunks: entry.review.hunks.map((h) => ({ ...h })) });
-      function list() {
-        return [...entries.values()].map((entry) => ({ id: entry.id, kind: "file", reason: entry.review.summary || "Changes applied and ready to accept or reject.", changes: entry.review.changes, proposal: true, remaining: entry.review.hunks.filter((h) => h.decision === null).length }));
+      function list(root) {
+        return [...entries.values()].filter((entry) => !root || path2.resolve(entry.root).toLowerCase() === path2.resolve(root).toLowerCase()).map((entry) => ({ id: entry.id, kind: "file", reason: entry.review.summary || "Changes applied and ready to accept or reject.", changes: entry.review.changes, proposal: true, remaining: entry.review.hunks.filter((h) => h.decision === null).length }));
       }
       function refresh(entry) {
         persist();
@@ -2717,6 +2717,63 @@ var require_codex_inline_review = __commonJS({
   }
 });
 
+// src/codex-history.cjs
+var require_codex_history = __commonJS({
+  "src/codex-history.cjs"(exports2, module2) {
+    var fs2 = require("node:fs");
+    var path2 = require("node:path");
+    var crypto2 = require("node:crypto");
+    function createHistory2(storage) {
+      const directory = path2.join(storage, "chat-history");
+      fs2.mkdirSync(directory, { recursive: true });
+      const valid = (id) => typeof id === "string" && /^[a-zA-Z0-9-]{1,80}$/.test(id);
+      function read(file) {
+        try {
+          return JSON.parse(fs2.readFileSync(file, "utf8"));
+        } catch (error) {
+          if (error.code === "ENOENT") return null;
+          throw error;
+        }
+      }
+      function write(file, value) {
+        const temporary = file + "." + crypto2.randomUUID() + ".tmp";
+        fs2.writeFileSync(temporary, JSON.stringify(value));
+        try {
+          fs2.renameSync(temporary, file);
+        } catch (error) {
+          if (error.code !== "EXDEV") throw error;
+          fs2.copyFileSync(temporary, file);
+          fs2.unlinkSync(temporary);
+        }
+      }
+      function save(chat) {
+        if (!valid(chat.id)) throw Error("Invalid chat ID");
+        const title = chat.messages?.find((message) => message.role === "user")?.text?.split("\n")[0].trim().slice(0, 100) || "New conversation";
+        const updatedAt = Date.now(), value = { ...chat, title, updatedAt };
+        write(path2.join(directory, chat.id + ".json"), value);
+        write(path2.join(directory, chat.id + ".meta.json"), { id: chat.id, title, root: chat.root || "", updatedAt, messageCount: chat.messages?.length || 0 });
+        return value;
+      }
+      function load(id) {
+        if (!valid(id)) throw Error("Invalid chat ID");
+        return read(path2.join(directory, id + ".json"));
+      }
+      function list() {
+        return fs2.readdirSync(directory).filter((name) => name.endsWith(".meta.json")).flatMap((name) => {
+          try {
+            const value = read(path2.join(directory, name));
+            return value && valid(value.id) && typeof value.title === "string" && typeof value.root === "string" && Number.isFinite(value.updatedAt) ? [value] : [];
+          } catch {
+            return [];
+          }
+        }).sort((a, b) => b.updatedAt - a.updatedAt);
+      }
+      return { save, load, list };
+    }
+    module2.exports = { createHistory: createHistory2 };
+  }
+});
+
 // src/codex-host.cjs
 var vscode = require("vscode");
 var fs = require("node:fs");
@@ -2733,13 +2790,20 @@ var review = require_codex_review();
 var proposals = require_codex_proposals();
 var { normalizeUsage, managedLoginUrl } = require_codex_usage();
 var { registerInlineReview } = require_codex_inline_review();
+var { createHistory } = require_codex_history();
 function registerCodex(context) {
   let lastEditor = vscode.window.activeTextEditor;
   let panelReady = false;
   let panel, rpc, root, threadId = null, turnId = null, loginId = null, baseline = null, entries = [], userEdits = /* @__PURE__ */ new Set(), timer;
   const pending = /* @__PURE__ */ new Map(), items = /* @__PURE__ */ new Map(), virtual = /* @__PURE__ */ new Map();
   const inlineReview = registerInlineReview(context);
-  const saved = context.workspaceState.get("personalIde.codexChat") || {};
+  const history = createHistory(context.globalStorageUri.fsPath);
+  const workspaceRoot = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath;
+  const currentRoot = workspaceRoot ? fs.realpathSync(workspaceRoot) : "";
+  const selection = context.globalState.get("personalIde.chatSelection");
+  const selected = selection?.root === currentRoot ? history.load(selection.id) : null;
+  const saved = selected || context.workspaceState.get("personalIde.codexChat") || {};
+  let chatId = saved.id || saved.chatId || crypto.randomUUID();
   const state = {
     trusted: vscode.workspace.isTrusted === true,
     loginPending: false,
@@ -2756,7 +2820,9 @@ function registerCodex(context) {
     commandApprovals: saved.commandApprovals === true,
     network: false,
     sandbox: "unknown",
-    root: "",
+    root: saved.root || currentRoot,
+    chatId,
+    history: history.list(),
     messages: saved.messages || [],
     events: [],
     pending: [],
@@ -2767,16 +2833,30 @@ function registerCodex(context) {
     turnDiff: ""
   };
   let savedThread = saved.toolVersion === 1 ? saved.threadId || null : null, savedRoot = saved.root || null;
-  function persist() {
-    return context.workspaceState.update("personalIde.codexChat", {
+  root = state.root || void 0;
+  if (saved.messages?.length || saved.threadId) {
+    history.save({ ...saved, id: chatId, root: state.root });
+    state.history = history.list();
+  }
+  async function persist() {
+    const chat = {
+      id: chatId,
+      chatId,
       root: state.root,
       threadId: threadId || savedThread,
       toolVersion: 1,
       model: state.model,
       commandApprovals: state.commandApprovals,
       messages: state.messages.slice(-60)
-    });
+    };
+    history.save(chat);
+    state.history = history.list();
+    await context.workspaceState.update("personalIde.codexChat", chat);
   }
+  if (selected || (saved.messages?.length || saved.threadId) && !saved.id && !saved.chatId) persist().then(() => selected ? context.globalState.update("personalIde.chatSelection", void 0) : void 0).catch((error) => {
+    state.error = error.message;
+    publish();
+  });
   function activeState() {
     return { ...state, provider: "codex" };
   }
@@ -2784,7 +2864,7 @@ function registerCodex(context) {
     if (timer) return;
     timer = setTimeout(() => {
       timer = null;
-      state.pending = [...pending.values()].map((x) => x.public).concat(inlineReview.list());
+      state.pending = [...pending.values()].map((x) => x.public).concat(root ? inlineReview.list(root) : []);
       panel?.webview.postMessage({ type: "codexState", state: activeState() });
     }, 60);
   }
@@ -3375,15 +3455,22 @@ function registerCodex(context) {
       }
       if (action.type === "newChat") {
         assertIdle();
-        threadId = null;
-        savedThread = null;
-        state.messages = [];
-        state.review = [];
-        entries = [];
-        state.turnDiff = "";
-        state.mode = "ask";
-        state.network = false;
-        await persist();
+        const folders = await vscode.window.showOpenDialog({ title: "Choose project folder for new chat", openLabel: "Use this project", canSelectFiles: false, canSelectFolders: true, canSelectMany: false, defaultUri: root ? vscode.Uri.file(root) : void 0 });
+        if (!folders?.length) return;
+        const project = fs.realpathSync(folders[0].fsPath);
+        if (!fs.statSync(project).isDirectory()) throw Error("Choose a project folder.");
+        await switchChat({ id: crypto.randomUUID(), root: project, messages: [], toolVersion: 1, model: state.model, commandApprovals: state.commandApprovals });
+      }
+      if (action.type === "history") {
+        state.history = history.list();
+        publish();
+        return;
+      }
+      if (action.type === "openChat") {
+        assertIdle();
+        const chat = history.load(action.id);
+        if (!chat) throw Error("This chat could not be found.");
+        await switchChat(chat);
       }
       if (action.type === "settings") {
         assertIdle();
@@ -3397,6 +3484,9 @@ function registerCodex(context) {
           );
           if (allow !== "Allow full access") return;
         }
+        await persist();
+        chatId = crypto.randomUUID();
+        state.chatId = chatId;
         state.commandApprovals = action.commandApprovals === void 0 ? state.commandApprovals : !!action.commandApprovals;
         state.mode = action.mode;
         state.network = action.mode === "full" || !!action.network;
@@ -3447,7 +3537,7 @@ function registerCodex(context) {
         state.attachments = state.attachments.filter((a) => a.id !== action.id);
       if (action.type === "reviewAll") {
         if (!["accept", "decline"].includes(action.decision)) throw Error("Invalid review decision");
-        const ids = inlineReview.list().map((request) => request.id);
+        const ids = (root ? inlineReview.list(root) : []).map((request) => request.id);
         for (const id of ids) if (inlineReview.inspect(id)) await inlineReview.decide(id, action.decision);
         publish();
         return;
@@ -3496,6 +3586,47 @@ function registerCodex(context) {
         });
       publish();
     }
+  }
+  async function switchChat(chat) {
+    const project = fs.realpathSync(chat.root);
+    if (!fs.statSync(project).isDirectory()) throw Error("This project's folder is no longer available.");
+    if (chat.id === chatId && project === root) return;
+    await persist();
+    if (project !== currentRoot) {
+      history.save({ ...chat, root: project });
+      await context.globalState.update("personalIde.chatSelection", { id: chat.id, root: project });
+      try {
+        await vscode.commands.executeCommand("vscode.openFolder", vscode.Uri.file(project), { forceReuseWindow: true });
+      } catch (error) {
+        await context.globalState.update("personalIde.chatSelection", void 0);
+        throw error;
+      }
+      return;
+    }
+    denyRequests();
+    threadId = null;
+    turnId = null;
+    savedThread = chat.toolVersion === 1 ? chat.threadId || null : null;
+    savedRoot = project;
+    root = project;
+    chatId = chat.id;
+    state.chatId = chatId;
+    state.root = project;
+    state.messages = chat.messages || [];
+    state.model = chat.model || state.model;
+    state.commandApprovals = chat.commandApprovals === true;
+    state.mode = "ask";
+    state.network = false;
+    state.attachments = [];
+    state.review = [];
+    entries = [];
+    items.clear();
+    state.turnDiff = "";
+    state.events = [];
+    state.error = "";
+    state.status = state.connected ? "Connected" : "Disconnected";
+    await persist();
+    publish();
   }
   function resolveView(view) {
     panel = view;

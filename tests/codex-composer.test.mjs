@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
+import os from "node:os";
 import vm from "node:vm";
 import { createRequire } from "node:module";
 const require = createRequire(import.meta.url);
@@ -89,7 +90,7 @@ test("a rejected send reports failure to its draft instead of acknowledging acce
   };
   const sandbox = {
     module: { exports: {} },
-    require: (name) => name === "./codex-inline-review.cjs" ? {registerInlineReview:()=>({clear(){},remove(){}})} : (name === "vscode" ? vscode : localRequire(name)),
+    require: (name) => name === "./codex-inline-review.cjs" ? {registerInlineReview:()=>({clear(){},remove(){},list(){return [];}})} : (name === "vscode" ? vscode : localRequire(name)),
     setTimeout,
     clearTimeout,
     Buffer,
@@ -100,6 +101,8 @@ test("a rejected send reports failure to its draft instead of acknowledging acce
   });
   const api = sandbox.module.exports.registerCodex({
     extensionUri: "interface",
+    globalStorageUri: {fsPath:fs.mkdtempSync(path.join(os.tmpdir(),"ide-composer-"))},
+    globalState: {get:()=>undefined,update:async()=>{}},
     subscriptions: disposables,
     workspaceState: { get: () => null, update: async () => {} },
   });

@@ -2,6 +2,8 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import vm from "node:vm";
+import os from "node:os";
+import path from "node:path";
 import {createRequire} from "node:module";
 
 const hostUrl=new URL("../interface/src/codex-host.cjs",import.meta.url);
@@ -18,15 +20,16 @@ function fixture(){
  const disposable=()=>({dispose(){}});
  const vscode={
   window:{registerWebviewViewProvider:disposable,onDidChangeActiveTextEditor:disposable},
-  workspace:{isTrusted:true,registerTextDocumentContentProvider:disposable,onDidGrantWorkspaceTrust:disposable,onDidChangeTextDocument:disposable},
+  workspace:{isTrusted:true,workspaceFolders:[{uri:{fsPath:process.cwd()}}],registerTextDocumentContentProvider:disposable,onDidGrantWorkspaceTrust:disposable,onDidChangeTextDocument:disposable},
   commands:{registerCommand:disposable},
  };
- const context={subscriptions:[],workspaceState:{get:()=>undefined}};
+ const storage=fs.mkdtempSync(path.join(os.tmpdir(),'ide-chat-bulk-'));
+ const context={subscriptions:[],globalStorageUri:{fsPath:storage},globalState:{get:()=>undefined},workspaceState:{get:()=>undefined}};
  const module={exports:{}};
  const load=name=>name==='vscode'?vscode:name==='./codex-inline-review.cjs'?{registerInlineReview:()=>inlineReview}:hostRequire(name);
  vm.runInThisContext('(function(require,module,exports){'+source+'\n})',{filename:hostUrl.pathname})(load,module,module.exports);
  const api=module.exports.registerCodex(context);
- return {api,reviews,decisions,dispose:()=>context.subscriptions.forEach(item=>item.dispose())};
+ return {api,reviews,decisions,dispose:()=>{context.subscriptions.forEach(item=>item.dispose());fs.rmSync(storage,{recursive:true,force:true});}};
 }
 
 for(const decision of ['accept','decline']){

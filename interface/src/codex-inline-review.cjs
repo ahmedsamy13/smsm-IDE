@@ -20,7 +20,7 @@ function registerInlineReview(context){
  const uri=(entry,side)=>vscode.Uri.from({scheme,authority:side,path:"/"+entry.id+"/"+entry.review.label.replaceAll("\\","/")});
  const lookup=document=>[...entries.values()].find(entry=>document.uri.scheme===scheme?document.uri.path.startsWith("/"+entry.id+"/"):document.uri.scheme==="file"&&document.uri.fsPath.toLowerCase()===entry.review.file.toLowerCase());
  const content=entry=>({...entry.review,hunks:entry.review.hunks.map(h=>({...h}))});
- function list(){return [...entries.values()].map(entry=>({id:entry.id,kind:"file",reason:entry.review.summary||"Changes applied and ready to accept or reject.",changes:entry.review.changes,proposal:true,remaining:entry.review.hunks.filter(h=>h.decision===null).length}));}
+ function list(root){return [...entries.values()].filter(entry=>!root||path.resolve(entry.root).toLowerCase()===path.resolve(root).toLowerCase()).map(entry=>({id:entry.id,kind:"file",reason:entry.review.summary||"Changes applied and ready to accept or reject.",changes:entry.review.changes,proposal:true,remaining:entry.review.hunks.filter(h=>h.decision===null).length}));}
  function refresh(entry){
   persist();
   if(entry){changed.fire(uri(entry,"before"));changed.fire(uri(entry,"after"));}

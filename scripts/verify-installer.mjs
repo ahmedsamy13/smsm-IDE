@@ -14,7 +14,8 @@ try{
  await run(engine,["--version"]);
  result.checks.push("Installed Codex engine ran from the application bundle, without a separate CLI installation");
  const registry=JSON.parse(fs.readFileSync(path.join(data,"extensions/extensions.json"),"utf8"));
- for(const id of ["personal-ide.workspace-interface","esbenp.prettier-vscode","dbaeumer.vscode-eslint","bradlc.vscode-tailwindcss","pkief.material-icon-theme","humao.rest-client","personal-ide.sqlite-browser","jeanp413.open-remote-ssh","ms-azuretools.vscode-containers"])if(!registry.some(entry=>entry.identifier.id.toLowerCase()===id.toLowerCase()))throw Error("Installed package is missing "+id);
+ if(!fs.existsSync(path.join(path.dirname(runtime),"resources/app/extensions/personal-ide-interface/package.json")))throw Error("Installed package is missing its built-in Personal IDE interface");
+ for(const id of ["esbenp.prettier-vscode","dbaeumer.vscode-eslint","bradlc.vscode-tailwindcss","pkief.material-icon-theme","humao.rest-client","personal-ide.sqlite-browser","jeanp413.open-remote-ssh","ms-azuretools.vscode-containers"])if(!registry.some(entry=>entry.identifier.id.toLowerCase()===id.toLowerCase()))throw Error("Installed package is missing "+id);
  result.checks.push("Custom interface and eight checksum-verified workflow/toolbox extensions installed offline");
  fs.writeFileSync(path.join(workspace,"app.js"),'// foundation smoke fixture\nconsole.log("ready");\n');
  fs.writeFileSync(path.join(data,"keep-user-data.txt"),"preserved");
