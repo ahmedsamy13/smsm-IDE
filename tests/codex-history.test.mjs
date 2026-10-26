@@ -68,3 +68,13 @@ test('a different project opens in the editor and hands off the selected chat wi
  assert.equal(f.globalState.get('personalIde.chatSelection'),undefined);
  assert.equal(reopened.context.workspaceState.get('personalIde.codexChat').id,selection.id);
 });
+
+test('Windows folder casing does not prevent the saved chat handoff',async t=>{
+ if(process.platform!=='win32')return;
+ const f=fixture(t),history=createHistory(f.storage);
+ history.save({id:'case-chat',root:f.project.toLowerCase(),messages:[{role:'user',text:'Recovered chat'}],toolVersion:1});
+ await f.globalState.update('personalIde.chatSelection',{id:'case-chat',root:f.project.toLowerCase()});
+ const ui=f.open(f.project);await new Promise(resolve=>setImmediate(resolve));
+ assert.equal(ui.api.getState().chatId,'case-chat');assert.equal(ui.api.getState().messages[0].text,'Recovered chat');
+ assert.equal(f.globalState.get('personalIde.chatSelection'),undefined);
+});

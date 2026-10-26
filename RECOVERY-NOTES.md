@@ -10,6 +10,6 @@ The existing PersonalIDE user profile was preserved, with a separate backup unde
 
 Workflow extensions use %LOCALAPPDATA%\PersonalIDE-Extensions. The previous extensions directory remains preserved.
 
-Old generated Windows installer executables and any unrecorded files that had no backup were not recovered. A source archive is saved in .local after verification.
+Old generated Windows installer executables and any unrecorded files that had no backup were not recovered. A separate source archive is saved at C:/Users/smsm/Documents/PersonalIDE-source-backup-2026-10-26.zip. Desktop startup automation timed out; the real desktop launch was verified from its running window title and Codex extension startup log.
 
 Use the Personal IDE desktop shortcut, or double-click Launch Personal IDE.cmd here. If Windows asks whether you trust the recovered project folder, review and answer that prompt.
